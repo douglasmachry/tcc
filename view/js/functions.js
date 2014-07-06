@@ -202,19 +202,19 @@ $(document).ready(function() {
 
         });
     });
-    
-    $(document).on("click","#mudarStatus",function(){
-            var idPedido = $(this).attr("pedido"),
+
+    $(document).on("click", "#mudarStatus", function() {
+        var idPedido = $(this).attr("pedido"),
                 status = $("#novoStatus").val();
-            $("#formulario").load("view/corpo/muda_status.php",{idPedido:idPedido,status:status});    
+        $("#formulario").load("view/corpo/muda_status.php", {idPedido: idPedido, status: status});
     });
-    
-    $(document).on("click","#finalizarPedido",function(){
-            var idPedido = $(this).attr("pedido"),
+
+    $(document).on("click", "#finalizarPedido", function() {
+        var idPedido = $(this).attr("pedido"),
                 status = "finalizado";
-            $("#formulario").load("view/corpo/muda_status.php",{idPedido:idPedido,status:status});    
+        $("#formulario").load("view/corpo/muda_status.php", {idPedido: idPedido, status: status});
     });
-    
+
     $(document).on("click", ".editar", function() {
         var table = $("#formulario input:hidden[name='form']").val();
         var el = this.id.substr(1);
@@ -432,22 +432,19 @@ $(document).ready(function() {
                                     } else {
 
                                         var
-                                            telentrega = 0,
-                                            
-                                            status = "aberto",
-                                            idCliente = $(".clientePedido").attr("id"),
-                                            
-                                            motivoCancel = "",
-                                            motoboy = $("#motoboy input").val(),
-                                            valTotal = $("#valorTotalPedido").text();
-                                            
-                                            
-                                            
+                                                telentrega = 0,
+                                                status = "aberto",
+                                                idCliente = $(".clientePedido").attr("id"),
+                                                motivoCancel = "",
+                                                motoboy = $("#motoboy input").val(),
+                                                valTotal = $("#valorTotalPedido").text();
+
+
+
                                         if ($(".pedidoPizza").length > 0) {
                                             var listaSabores = new Array(),
-                                                
-                                                listaObservacoesPizza = new Array(),
-                                                tamanhos = new Array();
+                                                    listaObservacoesPizza = new Array(),
+                                                    tamanhos = new Array();
                                             $(".pedidoPizza").each(function() {
                                                 //debugger;
                                                 var sabores = $(this).attr("sabores"),
@@ -456,23 +453,23 @@ $(document).ready(function() {
                                                 tamanhos.push($(this).attr("tamanho"));
                                                 listaObservacoesPizza.push($(this).attr("observacoes"));
                                             });
-                                        }else{
-                                            
+                                        } else {
+
                                             tamanhos = "";
                                             listaSabores = "";
-                                            listaObservacoesPizza="";
+                                            listaObservacoesPizza = "";
                                         }
 
                                         if ($(".pedidoProduto").length > 0) {
-                                             var produtos = new Array(),
-                                                listaObservacoesProduto = new Array();
+                                            var produtos = new Array(),
+                                                    listaObservacoesProduto = new Array();
                                             $(".pedidoProduto").each(function() {
                                                 produtos.push($(this).attr("produto"));
                                                 listaObservacoesProduto.push($(this).attr("observacoes"));
                                             });
                                         } else {
-                                            produtos="";
-                                            listaObservacoesProduto= "";
+                                            produtos = "";
+                                            listaObservacoesProduto = "";
                                         }
 
                                         if ($("#campoTelentrega").checked === true) {
@@ -551,65 +548,68 @@ $(document).ready(function() {
         }
         ;
     });
-    
-    $(document).on("click",".pedido",function(){
+
+    $(document).on("click", ".pedido", function() {
         var idPedido = $(this).attr("pedido");
         $(".pedidosAbertos tr").removeAttr("style");
         $(this).css("background-color", "#FFA500");
         var cancelaPedido = "<label class='msgerro'></label><br />Motivo do Cancelamento: <br /><textarea id='motivoCancelamento'></textarea>";
         cancelaPedido += "<br /><br /><button class='submit' id='cancelaPedido'>Cancelar Pedido</button>";
         $("#cancelarPedido").html(cancelaPedido);
-        $("#cancelaPedido").click(function(){
+        $("#cancelaPedido").click(function() {
             var motivo = $("#motivoCancelamento").val();
-            if(motivo === ""){
+            if (motivo === "") {
                 $(".msgerro").html("Qual o motivo?");
-            }else{
+            } else {
                 $(".msgerro").html("");
                 var conf = confirm('Tem certeza que deseja cancelar este pedido?');
                 if (conf == true) {
-                    $("#formulario").load("view/corpo/cancela_pedido.php",{idPedido:idPedido,motivo:motivo},function(){
+                    $("#formulario").load("view/corpo/cancela_pedido.php", {idPedido: idPedido, motivo: motivo}, function() {
                         $("#msg").addClass("msgconfirm");
                         $("#msg").html("Pedido cancelado com sucesso");
                     });
-                    
+
                 }
             }
         });
     });
-    
-    $(document).on("click","#relatorios ul li",function(){
+
+    $(document).on("click", "#relatorios ul li", function() {
         var id = this.id;
         $("#formRelatorio").fadeIn("slow");
-        $("#formRelatorio").load("view/corpo/"+id+".php",function(){
-            var nome = "",
-                filtro = "",
-                grupo = "";
-            $("#abrirFiltros").click(function(){
+        $("#formRelatorio").load("view/corpo/" + id + ".php", function() {
+
+            $("#abrirFiltros").click(function() {
+
                 $("#filtros").toggle(700);
-                $("#nomefiltro").change(function(){
+                var nome = $("#nomefiltro").val(),
+                        filtro = "",
+                        grupo = "";
+                $("#nomefiltro").change(function() {
                     var filtro = $(this).val();
-                    $.post("view/corpo/filtro.php",{filtro:filtro},function(data){
+                    $.post("view/corpo/filtro.php", {filtro: filtro}, function(data) {
                         $("#novoFiltro").html(data);
                     });
                     
-                    
+
                 });
+                 
             });
-            
-            $("#gerarRelatorio").click(function(){
-                nome = $("#nomefiltro").val();
-                    filtro = $("#filtro").val();
+           
+           $("#gerarRelatorio").click(function() {
+                var nome = $("#nomefiltro").val(),
+                    filtro = $("#filtro").val(),
                     grupo = $("#grupo").val();
-                $("#relatorioFinal").load("view/corpo/relatorioFinal.php",{
-                    nomeFiltro:nome,
-                    filtro:filtro,
-                    grupo:grupo
+                    $("#relatorioFinal").load("view/corpo/relatorioFinal.php", {
+                        nomeFiltro: nome,
+                        filtro: filtro,
+                        grupo: grupo
+                    });
                 });
-            });
             
         });
     });
-    
+
 });
 
 
