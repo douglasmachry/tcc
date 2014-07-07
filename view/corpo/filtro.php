@@ -6,9 +6,9 @@ switch ($filtro) {
     case "nome":
         include_once '../../ctrl/ClienteDAO.php';
         $clienteDAO = new ClienteDAO();
-        $campo = "Nome: <input type = 'text' id = 'fltro' />";
+        $campo = "Nome: <input type = 'text' id = 'filtro' />";
         break;
-    case "municipio":
+    case "idMunicipio":
         include_once '../../ctrl/MunicipioDAO.php';
         $municipioDAO = new MunicipioDAO();
         $lista = $municipioDAO->listarTodos();
@@ -18,7 +18,7 @@ switch ($filtro) {
         }
         $campo .= "</select>";
         break;
-    case "bairro":
+    case "idBairro":
         include_once '../../ctrl/BairroDAO.php';
         $bairroDAO = new BairroDAO();
         $lista = $bairroDAO->listarTodos();
@@ -36,7 +36,7 @@ switch ($filtro) {
 echo $campo;
 ?>
 <br />
-Agrupar por:
+Ordenar por:
 <select id="grupo">
         <option value="">Selecione</option>
         <option value="nome">Nome</option>
