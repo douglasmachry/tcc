@@ -252,6 +252,7 @@ div .colEsquerda, .colDireita, #listaPedido, #relatorioFinal{
 }
 
 .dados{
+    color: #000;
     border: 1px solid;
     width: 300px;
     //height: 100px;
@@ -398,5 +399,6 @@ div .colEsquerda, .colDireita, #listaPedido, #relatorioFinal{
     background: activecaption;
     cursor: pointer;
 }
+
 
 

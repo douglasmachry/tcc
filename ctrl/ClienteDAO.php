@@ -111,12 +111,14 @@ class ClienteDAO extends Cliente {
         else
             $where = "";
         if($grupo != "")
-            $group = " GROUP BY c.".$grupo;
+            $group = " ORDER BY c.".$grupo;
         else
             $group = "";
         
+        
+        //return $where;
         $pesquisa = mysql_query("SELECT c.*,m.nome AS nomeMunicipio, b.nome AS nomeBairro "
-                . "FROM clientes c JOIN municipios m ON m.id = c.idMunicipio"
+                . "FROM clientes c JOIN municipios m ON m.id = c.idMunicipio "
                 . "JOIN bairros b ON b.id = c.idBairro ".$where.$group);
         if(!$pesquisa){
             echo mysql_error();

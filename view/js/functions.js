@@ -582,9 +582,7 @@ $(document).ready(function() {
             $("#abrirFiltros").click(function() {
 
                 $("#filtros").toggle(700);
-                var nome = $("#nomefiltro").val(),
-                        filtro = "",
-                        grupo = "";
+                 
                 $("#nomefiltro").change(function() {
                     var filtro = $(this).val();
                     $.post("view/corpo/filtro.php", {filtro: filtro}, function(data) {

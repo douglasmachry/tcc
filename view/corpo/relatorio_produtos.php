@@ -1,4 +1,4 @@
-<h3>Relat&oacute;rio de Clientes</h3>
+<h3>Relat&oacute;rio de Produtos</h3>
 <br />
 <div class="colEsquerda">
     <span id="abrirFiltros">Filtrar pesquisa</span><br />
@@ -16,4 +16,3 @@
 
 </div>
 <div id="relatorioFinal"></div>
-
